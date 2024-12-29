@@ -6,8 +6,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    const string WALK = "Walk";
-    const string IDLE = "Idle";
+    const string IS_WALKING = "isWalking";
 
     PlayerInput playerInput;
     NavMeshAgent agent;
@@ -23,6 +22,13 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         AssignInputs();
+    }
+
+    private void Update()
+    {
+        if(agent.velocity != Vector3.zero) { FaceTarget(); }
+        
+        SetAnimations();
     }
 
     private void AssignInputs()
@@ -51,5 +57,19 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInput.Disable();
+    }
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (agent.steeringTarget - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+    }
+
+    private void SetAnimations()
+    {
+        bool isWalking = agent.velocity != Vector3.zero;
+        animator.SetBool(IS_WALKING, isWalking);
     }
 }
