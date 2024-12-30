@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationThreshold = 0.1f; // Threshold distance to stop rotation
     [SerializeField] float movementThreshold = 0.1f; // Threshold velocity to consider as moving
 
+    public bool IsMoving { get; private set; } // Public property to expose movement status
+
     private void Awake()
     {
         playerInput = new PlayerInput();
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
             FaceTarget();
         }
         SetAnimations();
+        IsMoving = agent.velocity.sqrMagnitude > movementThreshold; // Update movement status
     }
 
     private void AssignInputs()
