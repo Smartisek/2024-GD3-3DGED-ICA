@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement and Effect")]
     [SerializeField] ParticleSystem clickEffect;
     [SerializeField] LayerMask clickLayer;
+    [SerializeField] float rotationThreshold = 0.1f; // Threshold distance to stop rotation
+    [SerializeField] float movementThreshold = 0.1f; // Threshold velocity to consider as moving
 
     private void Awake()
     {
@@ -26,8 +28,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(agent.velocity != Vector3.zero) { FaceTarget(); }
-        
+        if (agent.velocity.sqrMagnitude > movementThreshold && agent.remainingDistance > rotationThreshold)
+        {
+            FaceTarget();
+        }
         SetAnimations();
     }
 
@@ -39,12 +43,12 @@ public class PlayerController : MonoBehaviour
     private void ClickMove()
     {
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, clickLayer))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, clickLayer))
         {
             agent.destination = hit.point;
-            if(clickEffect != null)
+            if (clickEffect != null)
             {
-                Instantiate(clickEffect, hit.point += new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
+                Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
             }
         }
     }
@@ -61,15 +65,20 @@ public class PlayerController : MonoBehaviour
 
     private void FaceTarget()
     {
-        Vector3 direction = (agent.steeringTarget - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
+        if (agent.velocity != Vector3.zero)
+        {
+            Vector3 direction = (agent.destination - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        } else
+        {
+            return;
+        }
     }
 
     private void SetAnimations()
     {
-        bool isWalking = agent.velocity != Vector3.zero;
+        bool isWalking = agent.velocity.sqrMagnitude > movementThreshold;
         animator.SetBool(IS_WALKING, isWalking);
     }
 }
