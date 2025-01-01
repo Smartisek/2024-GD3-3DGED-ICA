@@ -6,7 +6,13 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private InventoryCollection inventoryCollection; //what invetory collection ?  scriptable object 
     [SerializeField] private Inventory inventory; //for resetting inventory at start of the game
+    [SerializeField] private InventoryUI inventoryUI;
     private ItemInteraction nearbyItem; //interactable items 
+
+    private void Awake()
+    {
+        inventoryUI = FindObjectOfType<InventoryUI>();
+    }
 
     public void SetNearbyItem(ItemInteraction item)
     {
@@ -26,6 +32,10 @@ public class PlayerInventory : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             PickUpItem();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryUI.ToggleInventoryPanel();
         }
     }
 
