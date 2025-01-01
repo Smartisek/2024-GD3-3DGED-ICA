@@ -77,5 +77,13 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void InteractWithTrashCan(Inventory binInventory)
+    {
+        if(inventoryUI != null)
+        {
+            inventoryUI.SetCurrentBinInventory(binInventory);
+            inventoryUI.ToggleInventoryPanel();
+        }
+    }
 
 }
