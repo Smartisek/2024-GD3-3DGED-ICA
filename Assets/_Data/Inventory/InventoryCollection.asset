@@ -22,6 +22,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   contents:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: eebe2a6881924c64ebe93cce4c8ad995, type: 2}
   onCollectionChange: {fileID: 11400000, guid: cb82acf10ab35b948b542501b887df0d, type: 2}
   onCollectionEmpty: {fileID: 11400000, guid: c80a8d65d46c2cb468aa553f4665e18a, type: 2}

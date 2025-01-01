@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Trash Bag
   itemIcon: {fileID: 0}
   description: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 103300, guid: 70a4fe26c99cdd645b53ab796679e200, type: 3}

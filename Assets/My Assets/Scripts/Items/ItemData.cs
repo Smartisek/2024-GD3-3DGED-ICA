@@ -9,6 +9,7 @@ public class ItemData : ScriptableObject, IInstantiatePrefab
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private string description;
     [SerializeField] private GameObject prefab;
+    [SerializeField] private ItemType itemType;
 
 
     public GameObject Instantiate(Transform spawnPoint) //forced method from interface
@@ -26,5 +27,6 @@ public class ItemData : ScriptableObject, IInstantiatePrefab
     public string ItemName => itemName;
     public Sprite ItemIcon => itemIcon;
     public string Description => description;
+    public ItemType ItemType => itemType;
 
 }
