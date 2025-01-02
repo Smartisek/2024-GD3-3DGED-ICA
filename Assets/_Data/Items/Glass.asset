@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096cd022311c8804daec9d3637195681, type: 3}
-  m_Name: TrashBag
+  m_Name: Glass
   m_EditorClassIdentifier: 
-  itemName: Trash Bag
-  itemIcon: {fileID: 21300000, guid: f71c0dc03d067a342aa16a51674f6507, type: 3}
+  itemName: Glass
+  itemIcon: {fileID: 0}
   description: 
-  prefab: {fileID: 103300, guid: 70a4fe26c99cdd645b53ab796679e200, type: 3}
-  itemType: 0
+  prefab: {fileID: 0}
+  itemType: 2

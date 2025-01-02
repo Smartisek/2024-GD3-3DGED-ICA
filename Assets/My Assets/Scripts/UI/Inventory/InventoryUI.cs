@@ -14,11 +14,13 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform BinItemSlotContainer;
 
     private Inventory currentBinInventory; //will access the current bin inventory clicking on 
+    public bool IsInventoryOpen { get; private set; }
 
     private void Start()
     {
         // Hide the inventory panel at the start
         inventoryPanel.SetActive(false);
+        IsInventoryOpen = false;
         UpdateInventoryUI();
         
     }
@@ -65,9 +67,15 @@ public class InventoryUI : MonoBehaviour
 
     public void ToggleInventoryPanel()
     {
-        bool inInventory = !inventoryPanel.activeSelf; //check if the inventory panel is active or not
+        Debug.Log("Toggling inventory panel");
+        IsInventoryOpen = !IsInventoryOpen;
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-        UpdateInventoryUI(); //update the inventory UI when the panel is viewed
+        if (IsInventoryOpen)
+        {
+            UpdateInventoryUI(); //update the inventory UI when the panel is viewed
+        }
+        
+
     }
 
     public bool IsInventoryPanelActive() //check for in inventory state 
@@ -79,5 +87,16 @@ public class InventoryUI : MonoBehaviour
     {
         currentBinInventory = binInventory;
         UpdateInventoryUI();
+    }
+
+    public void HandleItemDrop(ItemSlotUI itemSlotUI)
+    {
+        if(currentBinInventory != null)
+        {
+            playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount);
+            currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount);
+            UpdateInventoryUI();
+            currentBinInventory.RaiseOnChange();
+        }
     }
 }

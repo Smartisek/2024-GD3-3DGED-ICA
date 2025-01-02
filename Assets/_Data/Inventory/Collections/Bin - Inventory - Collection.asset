@@ -21,6 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  contents: []
-  onCollectionChange: {fileID: 0}
-  onCollectionEmpty: {fileID: 0}
+  contents:
+  - {fileID: 11400000, guid: dcf0bb8cc5dc25846a4d5c9be60a36da, type: 2}
+  onCollectionChange: {fileID: 11400000, guid: cb82acf10ab35b948b542501b887df0d, type: 2}
+  onCollectionEmpty: {fileID: 11400000, guid: c80a8d65d46c2cb468aa553f4665e18a, type: 2}

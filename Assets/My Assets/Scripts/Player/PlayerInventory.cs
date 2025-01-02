@@ -77,13 +77,20 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void InteractWithTrashCan(Inventory binInventory)
-    {
-        if(inventoryUI != null)
-        {
-            inventoryUI.SetCurrentBinInventory(binInventory);
-            inventoryUI.ToggleInventoryPanel();
-        }
-    }
+    //public void InteractWithTrashCan(Inventory binInventory)
+    //{
+    //    Debug.Log("InteractWithTrashCan called");
+    //    if (inventoryUI != null)
+    //    {
+    //        Debug.Log("Setting current bin inventory");
+    //        inventoryUI.SetCurrentBinInventory(binInventory);
+    //        Debug.Log("Toggling inventory panel");
+    //        inventoryUI.ToggleInventoryPanel();
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("InventoryUI is null");
+    //    }
+    //}
 
 }

@@ -7,18 +7,30 @@ public class TrashCan : MonoBehaviour
 {
     [SerializeField] private InventoryCollection inventoryCollection;
     [SerializeField] private Inventory binInventory;
+    [SerializeField] private InventoryUI inventoryUI;
 
     private bool isPlayerNearby;
 
-    private void OnMouseDown()
+    private void Awake()
     {
-        if (isPlayerNearby)
-        {
-            PlayerInventory playerInventory = FindObjectOfType<PlayerInventory>();
+        Debug.Log(isPlayerNearby);
+    }
 
-            if (playerInventory != null)
+    private void Update()
+    {
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Player is nearby and E key pressed");
+            if (inventoryUI != null)
             {
-                playerInventory.InteractWithTrashCan(binInventory);
+                Debug.Log("Setting current bin inventory");
+                inventoryUI.SetCurrentBinInventory(binInventory);
+                Debug.Log("Toggling inventory panel");
+                inventoryUI.ToggleInventoryPanel();
+            }
+            else
+            {
+                Debug.LogError("InventoryUI is null");
             }
         }
     }

@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationThreshold = 0.1f; // Threshold distance to stop rotation
     [SerializeField] float movementThreshold = 0.1f; // Threshold velocity to consider as moving
 
+    [Header("Inventory UI")]
+    [SerializeField] private InventoryUI inventoryUI;
+
     public bool IsMoving { get; private set; } // Public property to expose movement status
     #endregion
 
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
         playerInput = new PlayerInput(); //access the PlayerInput class
         agent = GetComponent<NavMeshAgent>(); // Get NavMeshAgent component
         animator = GetComponent<Animator>(); // Get Animator component
+        inventoryUI = FindObjectOfType<InventoryUI>(); // Find the InventoryUI component in the scene
         AssignInputs(); // Assign inputs
     }
 
@@ -46,11 +50,17 @@ public class PlayerController : MonoBehaviour
     #region Movement Methods
     private void AssignInputs()
     {
-        playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity
+     playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity   
     }
+       
 
     private void ClickMove()
     {
+        if (inventoryUI.IsInventoryOpen)
+        {
+            return;
+        }
+       
         RaycastHit hit; // Create a raycast hit variable
         //check if the player clicks on the ground and if the player clicks on the ground, move the player to the clicked position
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100, clickLayer))
@@ -61,6 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(clickEffect, hit.point + new Vector3(0, 0.1f, 0), clickEffect.transform.rotation);
             }
+           
         }
     }
 
