@@ -10,6 +10,7 @@ public class TrashCan : MonoBehaviour
     [SerializeField] private Inventory binInventory;
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemType acceptedItems;
+    [SerializeField] private GameObject pressIndicator;
 
     private bool isPlayerNearby;
     #endregion
@@ -46,6 +47,7 @@ public class TrashCan : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = true;
+            pressIndicator.SetActive(true);
         }
     }
 
@@ -54,6 +56,7 @@ public class TrashCan : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = false;
+            pressIndicator.SetActive(false);
         }
     }
     #endregion
