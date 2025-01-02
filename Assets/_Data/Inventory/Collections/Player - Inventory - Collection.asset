@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98bb7ff5c4bace489025f001f40acdb, type: 3}
-  m_Name: InventoryCollection
+  m_Name: Player - Inventory - Collection
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
