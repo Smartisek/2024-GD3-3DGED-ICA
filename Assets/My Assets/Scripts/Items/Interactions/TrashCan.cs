@@ -5,26 +5,26 @@ using UnityEngine;
 
 public class TrashCan : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private InventoryCollection inventoryCollection;
     [SerializeField] private Inventory binInventory;
     [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private ItemType acceptedItems;
 
     private bool isPlayerNearby;
+    #endregion
 
-    private void Awake()
-    {
-        Debug.Log(isPlayerNearby);
-    }
 
     private void Update()
     {
+        //interaction which will be moved later
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Player is nearby and E key pressed");
             if (inventoryUI != null)
             {
                 Debug.Log("Setting current bin inventory");
-                inventoryUI.SetCurrentBinInventory(binInventory);
+                inventoryUI.SetCurrentBinInventory(binInventory, this);
                 Debug.Log("Toggling inventory panel");
                 inventoryUI.ToggleInventoryPanel();
             }
@@ -35,6 +35,12 @@ public class TrashCan : MonoBehaviour
         }
     }
 
+    public bool CanAcceptItemType(ItemData itemData)
+    {
+        return itemData.ItemType == acceptedItems; //Item passing in must match this can's type, used in inventoryUI script
+    }
+
+    #region Collision
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -50,4 +56,5 @@ public class TrashCan : MonoBehaviour
             isPlayerNearby = false;
         }
     }
+    #endregion
 }

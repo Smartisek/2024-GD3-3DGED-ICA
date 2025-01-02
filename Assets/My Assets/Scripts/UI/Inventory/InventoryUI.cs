@@ -7,25 +7,29 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject itemSlotPrefab;
     [SerializeField] private Transform PlayerItemSlotContainer;
     [SerializeField] private Transform BinItemSlotContainer;
 
-    private Inventory currentBinInventory; //will access the current bin inventory clicking on 
-    public bool IsInventoryOpen { get; private set; }
+    private Inventory currentBinInventory; //will access the current bin inventory when interacting
+    private TrashCan currentTrashCan; //will get reference to the current trash can (this) in trash can script
+    public bool IsInventoryOpen { get; private set; } //accessor for other scripts
+    #endregion
 
     private void Start()
     {
         // Hide the inventory panel at the start
         inventoryPanel.SetActive(false);
-        IsInventoryOpen = false;
+        IsInventoryOpen = false; //initially false
         UpdateInventoryUI();
         
     }
 
-    public void OnInventoryChange()
+    #region Inventory UI Methods
+    public void OnInventoryChange() //when there is change in inventory update the ui
     {
         UpdateInventoryUI();
     }
@@ -68,8 +72,9 @@ public class InventoryUI : MonoBehaviour
     public void ToggleInventoryPanel()
     {
         Debug.Log("Toggling inventory panel");
-        IsInventoryOpen = !IsInventoryOpen;
-        inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        IsInventoryOpen = !IsInventoryOpen; //toggle the inventory state
+        inventoryPanel.SetActive(!inventoryPanel.activeSelf); // show the panel 
+
         if (IsInventoryOpen)
         {
             UpdateInventoryUI(); //update the inventory UI when the panel is viewed
@@ -78,25 +83,41 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    public bool IsInventoryPanelActive() //check for in inventory state 
+    public bool IsInventoryPanelActive() //check for in inventory state for other scripts  
     {
         return inventoryPanel.activeSelf;
     }
 
-    public void SetCurrentBinInventory(Inventory binInventory)
+    #endregion
+
+    #region Bin Interaction Methods
+    public void SetCurrentBinInventory(Inventory binInventory, TrashCan trashCan) //used in trashCan script to set the current bin inventory
     {
         currentBinInventory = binInventory;
+        currentTrashCan = trashCan;
         UpdateInventoryUI();
     }
 
     public void HandleItemDrop(ItemSlotUI itemSlotUI)
     {
-        if(currentBinInventory != null)
+        if (currentBinInventory != null && itemSlotUI.ItemData != null) //check for nulls 
         {
-            playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount);
-            currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount);
-            UpdateInventoryUI();
-            currentBinInventory.RaiseOnChange();
+            if (currentTrashCan != null && currentTrashCan.CanAcceptItemType(itemSlotUI.ItemData)) //check if the (this) trash can can accept that type of item
+            {
+                playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
+                currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to trash inventory 
+                UpdateInventoryUI();
+                currentBinInventory.RaiseOnChange(); //notify subscribers of the change
+            }
+            else
+            {
+                Debug.Log("Item type not accepted by this trash can.");
+            }
+        }
+        else
+        {
+            Debug.Log("ItemData is null or currentBinInventory is null.");
         }
     }
+    #endregion
 }

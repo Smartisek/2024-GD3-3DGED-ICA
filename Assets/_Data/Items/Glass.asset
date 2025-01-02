@@ -16,4 +16,4 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   description: 
   prefab: {fileID: 0}
-  itemType: 2
+  itemType: 3

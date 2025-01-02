@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    #region Variables
     [SerializeField] private InventoryCollection inventoryCollection; //what invetory collection ?  scriptable object 
     [SerializeField] private Inventory inventory; //for resetting inventory at start of the game
     [SerializeField] private InventoryUI inventoryUI;
     private ItemInteraction nearbyItem; //interactable items 
+    #endregion
 
     private void Awake()
     {
         inventoryUI = FindObjectOfType<InventoryUI>();
     }
 
-    public void SetNearbyItem(ItemInteraction item)
-    {
-        nearbyItem = item;
-    }
-
-    public void ClearNearbyItem(ItemInteraction item)
-    {
-        if (nearbyItem == item)
-        {
-            nearbyItem = null;
-        }
-    }
-
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             PickUpItem();
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryUI.ToggleInventoryPanel();
+        }
+    }
+
+    #region Inventory Methods
+    // using same logic I coded in our group project: https://github.com/Tomascus/Darkspire
+    public void SetNearbyItem(ItemInteraction item)
+    {
+        nearbyItem = item; //set the nearby item to the item
+    }
+
+    public void ClearNearbyItem(ItemInteraction item) //clear because not near
+    {
+        if (nearbyItem == item)
+        {
+            nearbyItem = null;
         }
     }
 
@@ -76,21 +80,5 @@ public class PlayerInventory : MonoBehaviour
             nearbyItem = null;
         }
     }
-
-    //public void InteractWithTrashCan(Inventory binInventory)
-    //{
-    //    Debug.Log("InteractWithTrashCan called");
-    //    if (inventoryUI != null)
-    //    {
-    //        Debug.Log("Setting current bin inventory");
-    //        inventoryUI.SetCurrentBinInventory(binInventory);
-    //        Debug.Log("Toggling inventory panel");
-    //        inventoryUI.ToggleInventoryPanel();
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("InventoryUI is null");
-    //    }
-    //}
-
+    #endregion
 }
