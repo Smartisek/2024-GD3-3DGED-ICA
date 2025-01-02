@@ -13,6 +13,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject itemSlotPrefab;
     [SerializeField] private Transform PlayerItemSlotContainer;
     [SerializeField] private Transform BinItemSlotContainer;
+    [SerializeField] private TextMeshProUGUI binType;
 
     private Inventory currentBinInventory; //will access the current bin inventory when interacting
     private TrashCan currentTrashCan; //will get reference to the current trash can (this) in trash can script
@@ -74,6 +75,7 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Toggling inventory panel");
         IsInventoryOpen = !IsInventoryOpen; //toggle the inventory state
         inventoryPanel.SetActive(!inventoryPanel.activeSelf); // show the panel 
+        binType.text = currentTrashCan.name;
 
         if (IsInventoryOpen)
         {
