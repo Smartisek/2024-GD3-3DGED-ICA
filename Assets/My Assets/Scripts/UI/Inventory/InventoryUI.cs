@@ -14,9 +14,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform PlayerItemSlotContainer;
     [SerializeField] private Transform BinItemSlotContainer;
     [SerializeField] private TextMeshProUGUI binType;
+    [SerializeField] private TextMeshProUGUI plantingSpot;
 
     private Inventory currentBinInventory; //will access the current bin inventory when interacting
     private TrashCan currentTrashCan; //will get reference to the current trash can (this) in trash can script
+    private Planter currentPlantingSpot;
     public bool IsInventoryOpen { get; private set; } //accessor for other scripts
     #endregion
 
@@ -75,14 +77,18 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Toggling inventory panel");
         IsInventoryOpen = !IsInventoryOpen; //toggle the inventory state
         inventoryPanel.SetActive(!inventoryPanel.activeSelf); // show the panel 
-        binType.text = currentTrashCan.name;
+        binType.text = currentTrashCan != null ? currentTrashCan.name : currentPlantingSpot.name;
 
         if (IsInventoryOpen)
         {
             UpdateInventoryUI(); //update the inventory UI when the panel is viewed
         }
-        
+    }
 
+    public void ToggleOffInventoryPanel()
+    {
+        inventoryPanel.SetActive(false);
+        IsInventoryOpen = false;
     }
 
     public bool IsInventoryPanelActive() //check for in inventory state for other scripts  
@@ -100,6 +106,14 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
+    public void SetCurrentPlantInventory(Inventory binInventory, Planter plantingSpot) //used in planting spot script to set the current bin inventory
+    {
+        currentBinInventory = binInventory;
+        currentTrashCan = null;
+        currentPlantingSpot = plantingSpot;
+        UpdateInventoryUI();
+    }
+
     public void HandleItemDrop(ItemSlotUI itemSlotUI)
     {
         if (currentBinInventory != null && itemSlotUI.ItemData != null) //check for nulls 
@@ -108,6 +122,14 @@ public class InventoryUI : MonoBehaviour
             {
                 playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
                 currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to trash inventory 
+                UpdateInventoryUI();
+                currentBinInventory.RaiseOnChange(); //notify subscribers of the change
+            }
+            else if (currentPlantingSpot != null && itemSlotUI.ItemData.ItemType == ItemType.Seed) //check if the item is a seed for planting spot
+            {
+                playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
+                currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to planting inventory 
+                currentPlantingSpot.PlantTree(itemSlotUI.ItemData); //plant the tree
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change
             }

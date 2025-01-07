@@ -3,5 +3,7 @@ public enum ItemType
     Recycling,
     GeneralWaste,
     Glass,
-    Organic
+    Organic,
+    Seed,
+    Tree
 }
