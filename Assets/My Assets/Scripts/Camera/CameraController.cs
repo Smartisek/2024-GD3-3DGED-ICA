@@ -18,7 +18,9 @@ public class CameraController : MonoBehaviour
 
     private PlayerInput playerInput;
     private Vector2 rotationInput;
+    private Vector3 currentOffset;
     private PlayerController playerController;
+
     #endregion
 
     #region Subscription Methods
@@ -50,34 +52,43 @@ public class CameraController : MonoBehaviour
         {
         
             offset = transform.position - player.position; //get offset for the right camera positon
+            currentOffset = offset;
             playerController = player.GetComponent<PlayerController>(); //access player controller script for moving check
 
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (player == null) { return; } //if player is not dragged in the inspector, return
+        if (player == null)
+        {
+            return;
+        }
 
-        HandleCameraRotation(); //call the camera rotation method
+        // Smoothly follow the player
+        Vector3 desiredPosition = player.position + currentOffset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        transform.position = smoothedPosition;
 
-        //Logic for following the player with the camera
-        Vector3 desiredPosition = player.position + offset; //get the desired position of the camera 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime); //make the movement smoother
-        transform.position = smoothedPosition; //update the camera position
+        // Handle camera rotation
+        HandleCameraRotation();
     }
 
     private void HandleCameraRotation()
     {
-        if (rotationInput != Vector2.zero && playerController != null && !playerController.IsMoving) //check if player is moving and if the rotation input is not zero
+        if (rotationInput != Vector2.zero)
         {
-            float horizontalInput = rotationInput.x * rotationSpeed; //get the horizontal input, we dont need vertical
+            float horizontalInput = rotationInput.x * rotationSpeed * Time.deltaTime;
 
             // Rotate the camera around the player
-            transform.RotateAround(player.position, Vector3.up, horizontalInput);
+            Quaternion rotation = Quaternion.AngleAxis(horizontalInput, Vector3.up);
+            currentOffset = rotation * currentOffset; // Update the offset dynamically
 
-            // Update the offset to maintain the same distance from the player
-            offset = transform.position - player.position;
+            // Update the camera's position and ensure the correct offset
+            transform.position = player.position + currentOffset;
+
+            // Look at the player with offset mathing the initial position
+            transform.LookAt(player.position + Vector3.up * 1.7f);
         }
     }
 
