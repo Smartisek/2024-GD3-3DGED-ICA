@@ -14,7 +14,7 @@ public class Planter : MonoBehaviour
     [SerializeField] private GameObject pressIndicator;
 
     private bool isPlayerNearby;
-    private bool treePlanted = false;
+    public bool treePlanted = false;
     #endregion
 
     private void Update()

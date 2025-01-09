@@ -127,8 +127,8 @@ public class InventoryUI : MonoBehaviour
             }
             else if (currentPlantingSpot != null && itemSlotUI.ItemData.ItemType == ItemType.Seed) //check if the item is a seed for planting spot
             {
-                playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
-                currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to planting inventory 
+                playerInventory.Remove(itemSlotUI.ItemData, 1); //take away from player inventory 
+                currentBinInventory.Add(itemSlotUI.ItemData, 1); //give to planting inventory 
                 currentPlantingSpot.PlantTree(itemSlotUI.ItemData); //plant the tree
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change

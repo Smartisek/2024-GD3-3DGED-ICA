@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ItemInteraction : MonoBehaviour
@@ -8,6 +9,8 @@ public class ItemInteraction : MonoBehaviour
 
     [Header("UI to show when player in range")]
     [SerializeField] private GameObject pickupUI;
+    private Coroutine rotateUICoroutine;
+
     #endregion
 
     public ScriptableObject ItemData => itemData;
@@ -17,6 +20,15 @@ public class ItemInteraction : MonoBehaviour
         if (itemData != null)
         {
             pickupUI.SetActive(false); //dont show
+        }
+    }
+
+    private IEnumerator RotateUI()
+    {
+        while (true)
+        {
+            pickupUI.transform.Rotate(Vector3.up*100*Time.deltaTime);
+            yield return null;
         }
     }
 
@@ -33,6 +45,10 @@ public class ItemInteraction : MonoBehaviour
                 if (pickupUI != null)
                 {
                     pickupUI.SetActive(true); //show when player collide
+                    if (rotateUICoroutine == null)
+                    {
+                        rotateUICoroutine = StartCoroutine(RotateUI());
+                    }
                 }
             }
             else
@@ -54,6 +70,11 @@ public class ItemInteraction : MonoBehaviour
                 if (pickupUI != null)
                 {
                     pickupUI.SetActive(false); //dont show when player exit
+                    if (rotateUICoroutine != null)
+                    {
+                        StopCoroutine(rotateUICoroutine);
+                        rotateUICoroutine = null;
+                    }
                 }
             }
             else

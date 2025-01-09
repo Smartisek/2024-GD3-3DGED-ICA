@@ -40,13 +40,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (isColliding)
-        {
-            agent.isStopped = true; // Stop the agent if colliding
-            agent.velocity = Vector3.zero;
-            SetAnimations(false); // Set animations to false
-            return;
-        }
 
         //check if the player is moving and if the player is moving, rotate the player to the direction of movement
         if (agent.velocity.sqrMagnitude > movementThreshold && agent.remainingDistance > rotationThreshold && !isColliding)
@@ -119,22 +112,22 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region Collisions
-    private void OnCollisionEnter(Collision collision)
-    {
-        isColliding = true;
-        agent.isStopped = true; // Stop the agent if colliding
-        agent.velocity = Vector3.zero;
-        SetAnimations(false);
-        Debug.Log("Collision detected, stopping agent.");
-    }
+    //#region Collisions
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    isColliding = true;
+    //    agent.isStopped = true; // Stop the agent if colliding
+    //    agent.velocity = Vector3.zero;
+    //    SetAnimations(false);
+    //    Debug.Log("Collision detected, stopping agent.");
+    //}
 
-    private void OnCollisionExit(Collision collision)
-    {
-        isColliding = false;
-        agent.isStopped = false; // Start the agent if not colliding
-        SetAnimations(agent.velocity.sqrMagnitude > movementThreshold);
-        Debug.Log("Collision ended, resuming agent.");
-    }
-    #endregion
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    isColliding = false;
+    //    agent.isStopped = false; // Start the agent if not colliding
+    //    SetAnimations(agent.velocity.sqrMagnitude > movementThreshold);
+    //    Debug.Log("Collision ended, resuming agent.");
+    //}
+    //#endregion
 }

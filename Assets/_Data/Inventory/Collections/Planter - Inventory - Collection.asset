@@ -23,5 +23,10 @@ MonoBehaviour:
     SerializationNodes: []
   contents:
   - {fileID: 11400000, guid: c9a8c79328844294fb49b179901a9f61, type: 2}
+  - {fileID: 11400000, guid: 978c86be59c6b9c49922a2cf2dec420e, type: 2}
+  - {fileID: 11400000, guid: ef4ad89d60d8d814094b573756acbaa3, type: 2}
+  - {fileID: 11400000, guid: 1599a019eead1714ea170fe7ffba867a, type: 2}
+  - {fileID: 11400000, guid: 00b82c2bb9ea82945a8c868c6678dcec, type: 2}
+  - {fileID: 11400000, guid: a245928e6f3ca684ea9d4c56e080c5a0, type: 2}
   onCollectionChange: {fileID: 11400000, guid: cb82acf10ab35b948b542501b887df0d, type: 2}
   onCollectionEmpty: {fileID: 11400000, guid: c80a8d65d46c2cb468aa553f4665e18a, type: 2}
