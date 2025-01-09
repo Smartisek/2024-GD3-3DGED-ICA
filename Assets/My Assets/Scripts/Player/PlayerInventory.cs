@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private InventoryCollection inventoryCollection; //what invetory collection ?  scriptable object 
     [SerializeField] private Inventory inventory; //for resetting inventory at start of the game
     [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private Animator animator;
     private ItemInteraction nearbyItem; //interactable items 
     #endregion
 
@@ -21,10 +22,6 @@ public class PlayerInventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PickUpItem();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryUI.ToggleInventoryPanel();
         }
     }
 
@@ -60,6 +57,10 @@ public class PlayerInventory : MonoBehaviour
                         playerInventory.Add(itemData, 1);
                         Debug.Log($"Item added to inventory: {itemData.ItemName}");
 
+                        if (animator != null)
+                        {
+                            animator.SetTrigger("PickUp");
+                        }
                     }
                     catch (Exception e)
                     {

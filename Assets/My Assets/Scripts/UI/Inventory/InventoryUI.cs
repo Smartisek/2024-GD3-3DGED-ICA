@@ -27,6 +27,7 @@ public class InventoryUI : MonoBehaviour
         // Hide the inventory panel at the start
         inventoryPanel.SetActive(false);
         IsInventoryOpen = false; //initially false
+  
         UpdateInventoryUI();
         
     }
@@ -124,18 +125,19 @@ public class InventoryUI : MonoBehaviour
                 currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to trash inventory 
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change
-            }
-            else if (currentPlantingSpot != null && itemSlotUI.ItemData.ItemType == ItemType.Seed) //check if the item is a seed for planting spot
+                SoundManager.PlaySound("CORRECT", 1);
+            } else if (currentPlantingSpot != null && itemSlotUI.ItemData.ItemType == ItemType.Seed) //check if the item is a seed for planting spot
             {
                 playerInventory.Remove(itemSlotUI.ItemData, 1); //take away from player inventory 
                 currentBinInventory.Add(itemSlotUI.ItemData, 1); //give to planting inventory 
                 currentPlantingSpot.PlantTree(itemSlotUI.ItemData); //plant the tree
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change
+                SoundManager.PlaySound("CORRECT", 1);
             }
             else
             {
-                Debug.Log("Item type not accepted by this trash can.");
+                SoundManager.PlaySound("WRONG", 1);
             }
         }
         else
