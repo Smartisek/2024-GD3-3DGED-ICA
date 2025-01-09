@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 827b0085ac44cf2438201ea238289b9f, type: 3}
-  m_Name: Player - Inventory
+  m_Name: Organic-Bin - Inventory
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: d13c57860005cab4d82835afd8ccb67c, type: 2}
+    - {fileID: 11400000, guid: 255ee95d7f93a094eabecfdd2a4fd79a, type: 2}
+    - {fileID: 11400000, guid: c3fbf6f490032f94cb058c2f32e8ee97, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -35,7 +36,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -44,7 +45,19 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 2
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
