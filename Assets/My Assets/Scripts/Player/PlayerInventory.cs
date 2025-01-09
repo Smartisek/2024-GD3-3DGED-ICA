@@ -61,7 +61,6 @@ public class PlayerInventory : MonoBehaviour
                         {
                             animator.SetTrigger("PickUp");
                         }
-
                     }
                     catch (Exception e)
                     {
