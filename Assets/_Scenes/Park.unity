@@ -19972,6 +19972,13 @@ MonoBehaviour:
     type: 2}
   inventory: {fileID: 11400000, guid: eebe2a6881924c64ebe93cce4c8ad995, type: 2}
   inventoryUI: {fileID: 1391239350}
+  animator: {fileID: 1895806322}
+--- !u!95 &1895806322 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9571598, guid: 48b470c6a762f60438c631f219257520,
+    type: 3}
+  m_PrefabInstance: {fileID: 772380636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1896458834
 GameObject:
   m_ObjectHideFlags: 0
