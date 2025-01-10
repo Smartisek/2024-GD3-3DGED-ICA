@@ -11,7 +11,6 @@ public class TrashCan : MonoBehaviour
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemType acceptedItems;
     [SerializeField] private GameObject pressIndicator;
-    //[SerializeField] private GameObject binModel;
 
     private bool isPlayerNearby;
     #endregion
@@ -36,6 +35,7 @@ public class TrashCan : MonoBehaviour
             }
         }
     }
+
 
     public bool CanAcceptItemType(ItemData itemData)
     {

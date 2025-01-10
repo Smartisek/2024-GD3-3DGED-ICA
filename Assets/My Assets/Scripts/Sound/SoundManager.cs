@@ -4,16 +4,6 @@ using UnityEngine;
 
 /* https://www.youtube.com/watch?v=g5WT91Sn3hg */
 
-//public enum SoundType
-//{
-//    PICKUP,
-//    FOOTSTEPS,
-//    CORRECT,
-//    DIALOGUE,
-//    PLANT,
-//    BACKGROUND_MUSIC
-//}
-
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
@@ -80,6 +70,30 @@ public class SoundManager : MonoBehaviour
         {
             Debug.LogWarning($"Sound '{soundName}' not found!");
             return null;
+        }
+    }
+
+    public static void PlayBackgroundMusic(string musicName, float volume = 1)
+    {
+        if (instance.soundDictionary.TryGetValue(musicName, out var clip))
+        {
+            instance.audioSource.loop = true;
+            instance.audioSource.clip = clip;
+            instance.audioSource.volume = volume;
+            instance.audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning($"Background music '{musicName}' not found!");
+        }
+    }
+
+    public static void StopBackgroundMusic()
+    {
+        if (instance.audioSource.isPlaying && instance.audioSource.loop)
+        {
+            instance.audioSource.Stop();
+            instance.audioSource.loop = false;
         }
     }
 }

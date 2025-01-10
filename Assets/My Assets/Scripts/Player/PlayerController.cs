@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
         AssignInputs(); // Assign inputs
     }
 
+    private void Start()
+    {
+        SoundManager.PlayBackgroundMusic("BACKGROUND", 0.35f);
+    }
+
     private void Update()
     {
 
@@ -58,7 +63,8 @@ public class PlayerController : MonoBehaviour
     private void AssignInputs()
     {
      playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity
-        playerInput.Main.PickUp.performed += ctx => PickUpItem(); //subscribe to the pick up performed event created inside the input system in unity
+     playerInput.Main.PickUp.performed += ctx => PickUpItem(); //subscribe to the pick up performed event created inside the input system in unity
+   
     }
        
 
