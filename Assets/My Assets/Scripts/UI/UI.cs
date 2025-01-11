@@ -97,7 +97,7 @@ public class UI : MonoBehaviour
     public void OneStarCondition()
     {
         star1.enabled = true;
-        StartCoroutine(ShowPoliceMessage("You have 1 star!"));
+        StartCoroutine(ShowPoliceMessage("You have 1 star!", Color.white));
     }
 
     public void TwoStarsCondition()
@@ -110,15 +110,22 @@ public class UI : MonoBehaviour
         star3.enabled = true;
     }
 
+    public void WrongBin()
+    {
+        StartCoroutine(ShowPoliceMessage("This DOES NOT belong in here!", Color.red));
+    }
+
+
     #endregion
 
     #region NOTIFICATION UI
     //UI function for sliding in telling a message and sliding out 
-    private IEnumerator ShowPoliceMessage(string message)
+    private IEnumerator ShowPoliceMessage(string message, Color color)
     {
         if (policeMessageGroup && policeText != null)
         {
             policeText.text = message;
+            policeText.color = color;
 
            policeMessageGroup.SetActive(true);
 
