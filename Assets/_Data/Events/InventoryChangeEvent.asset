@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d64ad13915cb5544ade02fe20cc838d, type: 3}
-  m_Name: InventoryChangeEvenet
+  m_Name: InventoryChangeEvent
   m_EditorClassIdentifier: 

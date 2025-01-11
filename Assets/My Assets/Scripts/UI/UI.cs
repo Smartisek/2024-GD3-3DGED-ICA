@@ -111,6 +111,7 @@ public class UI : MonoBehaviour
 
     #endregion
 
+    //UI function for sliding in telling a message and sliding out 
     private IEnumerator ShowPoliceMessage(string message)
     {
         if (policeMessageGroup && policeText != null)

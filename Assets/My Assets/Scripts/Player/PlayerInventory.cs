@@ -10,6 +10,10 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private Animator animator;
     private ItemInteraction nearbyItem; //interactable items 
+
+    [SerializeField]
+    [Tooltip("Event to raise when pickup.")]
+    private GameEvent onPickup;
     #endregion
 
     private void Awake()
@@ -49,7 +53,7 @@ public class PlayerInventory : MonoBehaviour
                         Inventory playerInventory = inventoryCollection[0];
                         playerInventory.Add(itemData, 1);
                         Debug.Log($"Item added to inventory: {itemData.ItemName}");
-
+                        onPickup?.Raise(); // Tell interested parties that the inventory has changed
                         if (animator != null)
                         {
                             animator.SetTrigger("PickUp");
