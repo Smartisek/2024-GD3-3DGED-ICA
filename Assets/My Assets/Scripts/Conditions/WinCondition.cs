@@ -13,7 +13,7 @@ public class WinCondition : ConditionBase
     protected override bool EvaluateCondition(ConditionContext conditionContext)
     {
         Debug.Log($"Evaluating WinCondition: TotalSeedsPlanted = {SeedCounter.TotalSeedsPlanted}, requiredTreesPlanted = {requiredTreesPlanted}");
-        bool isConditionMet = SeedCounter.TotalSeedsPlanted >= requiredTreesPlanted /*|| TrashCounter.TotalItemsRecycled >= requiredTrashRecycled*/;
+        bool isConditionMet = SeedCounter.TotalSeedsPlanted >= requiredTreesPlanted && TrashCounter.TotalItemsRecycled >= requiredTrashRecycled;
 
         if(isConditionMet && !IsMet)
         {

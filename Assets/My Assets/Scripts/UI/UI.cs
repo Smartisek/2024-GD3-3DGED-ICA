@@ -74,14 +74,31 @@ public class UI : MonoBehaviour
         int trashRecycled = TrashCounter.TotalItemsRecycled;
         int treesPlanted = SeedCounter.TotalSeedsPlanted;
 
-        if(treesPlanted >= 1)
-        {
-            star1.enabled = true;
-        }
+        //if(treesPlanted >= 1)
+        //{
+        //    star1.enabled = true;
+        //}
     }
-
+    #region CONDITIONS
     public void WinCondition()
     {
         Debug.Log("You win! FROM UI");
     }
+
+    public void OneStarCondition()
+    {
+        star1.enabled = true;
+    }
+
+    public void TwoStarsCondition()
+    {
+        star2.enabled = true;
+    }
+
+    public void ThreeStarsCondition()
+    {
+        star3.enabled = true;
+    }
+
+    #endregion
 }
