@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace GD.State
 {
+    /** NIAL'S CODE EDITTED TO MY GAME https://github.com/nmcguinness/2024-25-GD3A-IntroToUnity/tree/main **/
+
     /// <summary>
     /// Manages the game state by evaluating win and loss conditions.
     /// </summary>
@@ -34,13 +36,20 @@ namespace GD.State
         [Tooltip("The condition that determines if the player wins")]
         private ConditionBase winCondition;
 
-        /// <summary>
-        /// The condition that determines if the player loses.
-        /// </summary>
         [FoldoutGroup("Conditions")]
         [SerializeField]
-        [Tooltip("The condition that determines if the player loses")]
-        private ConditionBase loseCondition;
+        [Tooltip("The condition that determines if to show one star")]
+        private ConditionBase oneStarsCondition;
+
+        [FoldoutGroup("Conditions")]
+        [SerializeField]
+        [Tooltip("The condition that determines if to show two stars")]
+        private ConditionBase twoStarsCondition;
+
+        [FoldoutGroup("Conditions")]
+        [SerializeField]
+        [Tooltip("The condition that determines if to show three star")]
+        private ConditionBase threeStarsCondition;
 
         [FoldoutGroup("Achievements [optional]")]
         [SerializeField]
@@ -93,25 +102,6 @@ namespace GD.State
             // UIManager.Instance.ShowVictoryScreen();
             // SceneManager.LoadScene("NextLevel");
         }
-
-        /// <summary>
-        /// Handles the logic when the player loses.
-        /// </summary>
-        protected virtual void HandleLoss()
-        {
-            Debug.Log($"Player Loses! Lose condition met at {loseCondition.TimeMet} seconds.");
-
-            // Implement loss logic here, such as:
-            // - Displaying a game over screen
-            // - Offering a restart option
-            // - Reducing player lives
-            // - Playing a defeat sound or animation
-
-            // Example:
-            // UIManager.Instance.ShowGameOverScreen();
-            // GameManager.Instance.RestartLevel();
-        }
-
         /// <summary>
         /// Resets the win and loss conditions.
         /// Call this method when restarting the game or level.
@@ -126,8 +116,14 @@ namespace GD.State
                 winCondition.ResetCondition();
 
             // Reset the lose condition
-            if (loseCondition != null)
-                loseCondition.ResetCondition();
+            if (oneStarsCondition != null && twoStarsCondition != null && threeStarsCondition != null)
+            {
+                oneStarsCondition.ResetCondition();
+                twoStarsCondition.ResetCondition();
+                threeStarsCondition.ResetCondition();
+            }
+               
+
 
             // Reset the achievement conditions
             if (achievementConditions != null)
