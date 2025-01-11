@@ -28,6 +28,6 @@ public class SceneManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }
