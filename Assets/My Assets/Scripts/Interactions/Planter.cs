@@ -17,6 +17,11 @@ public class Planter : MonoBehaviour
     public bool treePlanted = false;
     #endregion
 
+    private void Start()
+    {
+        SeedCounter.ResetSeedCounter();
+    }
+
     private void Update()
     {
         //interaction which will be moved later
@@ -46,7 +51,9 @@ public class Planter : MonoBehaviour
             treePlanted = true;
             pressIndicator.SetActive(false);
             inventoryUI.ToggleOffInventoryPanel();
-            
+
+            SeedCounter.IncrementSeedCounter();
+
         }
     }
 

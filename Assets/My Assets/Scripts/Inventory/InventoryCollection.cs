@@ -96,5 +96,19 @@ namespace GD.Items
             onCollectionEmpty?.Raise();
             return contents.Count == 0;
         }
+
+        public void ClearAllInventories() //clear all inventories in the collections
+        {
+            foreach (var inventory in contents)
+            {
+                inventory.Clear();
+            }
+            onCollectionEmpty?.Raise();
+        }
+
+        private void OnEnable()
+        {
+            ClearAllInventories(); //will clear on intialization of this script
+        }
     }
 }

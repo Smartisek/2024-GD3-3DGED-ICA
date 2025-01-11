@@ -27,7 +27,8 @@ public class InventoryUI : MonoBehaviour
         // Hide the inventory panel at the start
         inventoryPanel.SetActive(false);
         IsInventoryOpen = false; //initially false
-  
+        TrashCounter.ResetRecycledItems(); //reset the trash counter
+
         UpdateInventoryUI();
         
     }
@@ -123,6 +124,7 @@ public class InventoryUI : MonoBehaviour
             {
                 playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
                 currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to trash inventory 
+                TrashCounter.IncrementRecycledItems(); //increment the trash counter
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change
                 SoundManager.PlaySound("CORRECT", 1);

@@ -17,13 +17,6 @@ public class PlayerInventory : MonoBehaviour
         inventoryUI = FindObjectOfType<InventoryUI>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PickUpItem();
-        }
-    }
 
     #region Inventory Methods
     // using same logic I coded in our group project: https://github.com/Tomascus/Darkspire

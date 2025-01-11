@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [Header("Inventory UI")]
     [SerializeField] private InventoryUI inventoryUI;
 
+    [Header("Player Inventory")]
+    [SerializeField] private PlayerInventory playerInventory;
+
     public bool IsMoving { get; private set; } // Public property to expose movement status
     private bool isColliding; //flag when player bumps into something 
 
@@ -35,7 +38,13 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>(); // Get NavMeshAgent component
         animator = GetComponent<Animator>(); // Get Animator component
         inventoryUI = FindObjectOfType<InventoryUI>(); // Find the InventoryUI component in the scene
+        playerInventory = GetComponent<PlayerInventory>(); // Find the PlayerInventory component in the scene
         AssignInputs(); // Assign inputs
+    }
+
+    private void Start()
+    {
+        SoundManager.PlayBackgroundMusic("BACKGROUND", 0.35f);
     }
 
     private void Update()
@@ -53,7 +62,9 @@ public class PlayerController : MonoBehaviour
     #region Movement Methods
     private void AssignInputs()
     {
-     playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity   
+     playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity
+     playerInput.Main.PickUp.performed += ctx => PickUpItem(); //subscribe to the pick up performed event created inside the input system in unity
+   
     }
        
 
@@ -92,12 +103,21 @@ public class PlayerController : MonoBehaviour
             return; //if player is standing still, return
         }
     }
+
     #endregion
 
     private void SetAnimations(bool isWalking)
     {
         
         animator.SetBool(IS_WALKING, isWalking); //set the walking animation to the player
+    }
+
+    private void PickUpItem()
+    {
+        if (playerInventory != null)
+        {
+            playerInventory.PickUpItem();
+        }
     }
 
     #region Subscribers
@@ -111,23 +131,4 @@ public class PlayerController : MonoBehaviour
         playerInput.Disable();
     }
     #endregion
-
-    //#region Collisions
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    isColliding = true;
-    //    agent.isStopped = true; // Stop the agent if colliding
-    //    agent.velocity = Vector3.zero;
-    //    SetAnimations(false);
-    //    Debug.Log("Collision detected, stopping agent.");
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    isColliding = false;
-    //    agent.isStopped = false; // Start the agent if not colliding
-    //    SetAnimations(agent.velocity.sqrMagnitude > movementThreshold);
-    //    Debug.Log("Collision ended, resuming agent.");
-    //}
-    //#endregion
 }

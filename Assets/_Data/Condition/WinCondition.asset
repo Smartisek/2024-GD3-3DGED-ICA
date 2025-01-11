@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd3bb6e56384a344aed87a9d93aa7f8, type: 3}
+  m_Name: WinCondition
+  m_EditorClassIdentifier: 
+  evaluateStrategy: 0
+  OnConditionMet: {fileID: 11400000, guid: d2169bc67d57b584a809454039bc5d67, type: 2}
+  isMet: 1
+  timeMet: 27.423187
+  requiredTreesPlanted: 2
+  requiredTrashRecycled: 0
+  onWinConditionEvent: {fileID: 11400000, guid: d2169bc67d57b584a809454039bc5d67,
+    type: 2}
