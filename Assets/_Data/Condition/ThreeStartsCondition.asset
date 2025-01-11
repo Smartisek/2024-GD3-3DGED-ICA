@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ThreeStartsCondition
   m_EditorClassIdentifier: 
   evaluateStrategy: 1
-  OnConditionMet: {fileID: 0}
+  OnConditionMet: {fileID: 11400000, guid: fa53e2424a361e9479504f9e082da513, type: 2}
   isMet: 0
   timeMet: -1
-  requiredTreesPlanted: 0
-  requiredTrashRecycled: 0
-  onWinConditionEvent: {fileID: 0}
+  requiredTreesPlanted: 4
+  requiredTrashRecycled: 6
+  onWinConditionEvent: {fileID: 11400000, guid: fa53e2424a361e9479504f9e082da513,
+    type: 2}

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: TwoStarsCondition
   m_EditorClassIdentifier: 
   evaluateStrategy: 1
-  OnConditionMet: {fileID: 0}
+  OnConditionMet: {fileID: 11400000, guid: 2d4260e3dbff85f49b87228af68c099c, type: 2}
   isMet: 0
   timeMet: -1
-  requiredTreesPlanted: 0
-  requiredTrashRecycled: 0
-  onWinConditionEvent: {fileID: 0}
+  requiredTreesPlanted: 2
+  requiredTrashRecycled: 4
+  onWinConditionEvent: {fileID: 11400000, guid: 2d4260e3dbff85f49b87228af68c099c,
+    type: 2}

@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Image star2;
     [SerializeField] private Image star3;
 
+    //Notification slider
     [SerializeField] private TextMeshProUGUI policeText;
     [SerializeField] private float slideDuration = 1f;
     [SerializeField] private Image border;
@@ -111,6 +112,7 @@ public class UI : MonoBehaviour
 
     #endregion
 
+    #region NOTIFICATION UI
     //UI function for sliding in telling a message and sliding out 
     private IEnumerator ShowPoliceMessage(string message)
     {
@@ -149,4 +151,7 @@ public class UI : MonoBehaviour
             policeMessageGroup.SetActive(false);
         }
     }
+    #endregion
+
+
 }
