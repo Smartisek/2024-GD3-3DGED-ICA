@@ -15,6 +15,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform BinItemSlotContainer;
     [SerializeField] private TextMeshProUGUI binType;
     [SerializeField] private TextMeshProUGUI plantingSpot;
+    [SerializeField] private UI ui;
 
     private Inventory currentBinInventory; //will access the current bin inventory when interacting
     private TrashCan currentTrashCan; //will get reference to the current trash can (this) in trash can script
@@ -24,6 +25,8 @@ public class InventoryUI : MonoBehaviour
 
     private void Start()
     {
+        ui = FindObjectOfType<UI>(); //find the UI script
+
         // Hide the inventory panel at the start
         inventoryPanel.SetActive(false);
         IsInventoryOpen = false; //initially false
@@ -127,6 +130,7 @@ public class InventoryUI : MonoBehaviour
                 TrashCounter.IncrementRecycledItems(); //increment the trash counter
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change
+                
                 SoundManager.PlaySound("CORRECT", 1);
             } else if (currentPlantingSpot != null && itemSlotUI.ItemData.ItemType == ItemType.Seed) //check if the item is a seed for planting spot
             {
@@ -140,6 +144,7 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 SoundManager.PlaySound("WRONG", 1);
+                ui.WrongBin();
             }
         }
         else

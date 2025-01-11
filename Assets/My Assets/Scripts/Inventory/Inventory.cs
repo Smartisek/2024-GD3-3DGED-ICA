@@ -26,6 +26,7 @@ public class Inventory : SerializedScriptableObject, IEnumerable<KeyValuePair<It
     private GameEvent onInventoryClear;
 
 
+
     #endregion Fields
 
     #region Properties
@@ -53,7 +54,6 @@ public class Inventory : SerializedScriptableObject, IEnumerable<KeyValuePair<It
             contents.Add(item, count);
 
         onInventoryChange?.Raise(); // Tell interested parties that the inventory has changed
-
     }
 
 

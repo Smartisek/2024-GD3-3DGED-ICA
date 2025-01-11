@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Image star2;
     [SerializeField] private Image star3;
 
+    //Notification slider
     [SerializeField] private TextMeshProUGUI policeText;
     [SerializeField] private float slideDuration = 1f;
     [SerializeField] private Image border;
@@ -96,7 +97,7 @@ public class UI : MonoBehaviour
     public void OneStarCondition()
     {
         star1.enabled = true;
-        StartCoroutine(ShowPoliceMessage("You have 1 star!"));
+        StartCoroutine(ShowPoliceMessage("You have 1 star!", Color.white));
     }
 
     public void TwoStarsCondition()
@@ -109,13 +110,22 @@ public class UI : MonoBehaviour
         star3.enabled = true;
     }
 
+    public void WrongBin()
+    {
+        StartCoroutine(ShowPoliceMessage("This DOES NOT belong in here!", Color.red));
+    }
+
+
     #endregion
 
-    private IEnumerator ShowPoliceMessage(string message)
+    #region NOTIFICATION UI
+    //UI function for sliding in telling a message and sliding out 
+    private IEnumerator ShowPoliceMessage(string message, Color color)
     {
         if (policeMessageGroup && policeText != null)
         {
             policeText.text = message;
+            policeText.color = color;
 
            policeMessageGroup.SetActive(true);
 
@@ -148,4 +158,7 @@ public class UI : MonoBehaviour
             policeMessageGroup.SetActive(false);
         }
     }
+    #endregion
+
+
 }

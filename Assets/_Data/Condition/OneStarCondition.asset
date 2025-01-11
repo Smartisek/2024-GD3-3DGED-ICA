@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: OneStarCondition
   m_EditorClassIdentifier: 
   evaluateStrategy: 1
-  OnConditionMet: {fileID: 0}
+  OnConditionMet: {fileID: 11400000, guid: aa8b6996b9e125d41a15e5b1de1644b6, type: 2}
   isMet: 0
   timeMet: -1
-  requiredTreesPlanted: 0
+  requiredTreesPlanted: 2
   requiredTrashRecycled: 0
-  onWinConditionEvent: {fileID: 0}
+  onWinConditionEvent: {fileID: 11400000, guid: aa8b6996b9e125d41a15e5b1de1644b6,
+    type: 2}
