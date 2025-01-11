@@ -6,6 +6,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     [SerializeField] private NPCConversation conversation;
+    [SerializeField] private GameObject pressIndicator;
     private bool conversationInRange = false;
     public bool inDialogue = false;
 
@@ -13,6 +14,7 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            pressIndicator.SetActive(true);
             conversationInRange = true;
         }
     }
@@ -21,6 +23,7 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            pressIndicator.SetActive(false);
             conversationInRange = false;
             inDialogue = false;
         }
