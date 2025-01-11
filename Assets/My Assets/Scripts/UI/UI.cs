@@ -79,4 +79,9 @@ public class UI : MonoBehaviour
             star1.enabled = true;
         }
     }
+
+    public void WinCondition()
+    {
+        Debug.Log("You win! FROM UI");
+    }
 }
