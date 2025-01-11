@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [Header("Player Inventory")]
     [SerializeField] private PlayerInventory playerInventory;
 
+    [SerializeField] private NPC npc;
+
     public bool IsMoving { get; private set; } // Public property to expose movement status
     private bool isColliding; //flag when player bumps into something 
 
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>(); // Get Animator component
         inventoryUI = FindObjectOfType<InventoryUI>(); // Find the InventoryUI component in the scene
         playerInventory = GetComponent<PlayerInventory>(); // Find the PlayerInventory component in the scene
+        npc = FindObjectOfType<NPC>(); // Find the NPC component in the scene
         AssignInputs(); // Assign inputs
     }
 
@@ -64,13 +67,13 @@ public class PlayerController : MonoBehaviour
     {
      playerInput.Main.Movement.performed += ctx => ClickMove(); //subscribe to the movement performed event created inside the input system in unity
      playerInput.Main.PickUp.performed += ctx => PickUpItem(); //subscribe to the pick up performed event created inside the input system in unity
-   
+     playerInput.Main.Dialogue.performed += ctx => Dialogue(); //subscribe to the dialogue performed event created inside the input system in unity
     }
        
 
     private void ClickMove()
     {
-        if (inventoryUI.IsInventoryOpen)
+        if (inventoryUI.IsInventoryOpen || npc.inDialogue)
         {
             return;
         }
@@ -117,6 +120,18 @@ public class PlayerController : MonoBehaviour
         if (playerInventory != null)
         {
             playerInventory.PickUpItem();
+        }
+    }
+
+    private void Dialogue()
+    {
+        if (npc != null)
+        {
+            npc.StartDialogue();
+            Debug.Log("Interacting with NPC.");
+        } else
+        {
+            Debug.Log("No NPC found.");
         }
     }
 
