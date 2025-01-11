@@ -16,7 +16,7 @@ MonoBehaviour:
   OnConditionMet: {fileID: 11400000, guid: fa53e2424a361e9479504f9e082da513, type: 2}
   isMet: 0
   timeMet: -1
-  requiredTreesPlanted: 4
-  requiredTrashRecycled: 6
+  requiredTreesPlanted: 6
+  requiredTrashRecycled: 20
   onWinConditionEvent: {fileID: 11400000, guid: fa53e2424a361e9479504f9e082da513,
     type: 2}
