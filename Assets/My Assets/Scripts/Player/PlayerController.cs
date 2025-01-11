@@ -45,11 +45,6 @@ public class PlayerController : MonoBehaviour
         AssignInputs(); // Assign inputs
     }
 
-    private void Start()
-    {
-        SoundManager.PlayBackgroundMusic("BACKGROUND", 0.35f);
-    }
-
     private void Update()
     {
 

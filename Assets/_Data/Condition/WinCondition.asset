@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evaluateStrategy: 0
   OnConditionMet: {fileID: 11400000, guid: d2169bc67d57b584a809454039bc5d67, type: 2}
-  isMet: 1
-  timeMet: 27.423187
-  requiredTreesPlanted: 2
-  requiredTrashRecycled: 0
+  isMet: 0
+  timeMet: -1
+  requiredTreesPlanted: 6
+  requiredTrashRecycled: 20
   onWinConditionEvent: {fileID: 11400000, guid: d2169bc67d57b584a809454039bc5d67,
     type: 2}

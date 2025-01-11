@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         conditionContext = new ConditionContext();
         SeedCounter.OnSeedPlanted += OnSeedPlanted; //Subscribe to the event
         TrashCounter.OnItemRecycled += OnItemRecycled; //Subscribe to the event
-      
+        SoundManager.PlayBackgroundMusic("BACKGROUND", 0.40f);
     }
 
     private void OnDestroy()
