@@ -24,6 +24,9 @@ public class UI : MonoBehaviour
     [SerializeField] private int totalTrash;
     [SerializeField] private int totalTrees;
 
+    //win page
+    [SerializeField] private GameObject winPage;
+
     #endregion
 
     #region LISTENERS
@@ -57,6 +60,11 @@ public class UI : MonoBehaviour
             star1.enabled = false;
             star2.enabled = false;
             star3.enabled = false;
+        }
+
+        if(winPage != null)
+        {
+            winPage.SetActive(false);
         }
 
         UpdateTreeSlider();
@@ -97,17 +105,19 @@ public class UI : MonoBehaviour
     public void OneStarCondition()
     {
         star1.enabled = true;
-        StartCoroutine(ShowPoliceMessage("You have 1 star!", Color.white));
+        StartCoroutine(ShowPoliceMessage("Good job! Keep going young man.", Color.white));
     }
 
     public void TwoStarsCondition()
     {
         star2.enabled = true;
+        StartCoroutine(ShowPoliceMessage("You are slowly getting there!", Color.white));
     }
 
     public void ThreeStarsCondition()
     {
         star3.enabled = true;
+        StartCoroutine(ShowPoliceMessage("Great work! You are now free to go.", Color.white));
     }
 
     public void WrongBin()
@@ -115,6 +125,15 @@ public class UI : MonoBehaviour
         StartCoroutine(ShowPoliceMessage("This DOES NOT belong in here!", Color.red));
     }
 
+    public void WinState()
+    {
+        if (winPage != null)
+        {
+            winPage.SetActive(true);
+        }
+        Time.timeScale = 0f; // Pause the game
+        Debug.Log("Game Paused: You Win!");
+    }
 
     #endregion
 
