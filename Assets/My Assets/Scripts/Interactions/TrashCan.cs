@@ -37,7 +37,7 @@ public class TrashCan : MonoBehaviour
     }
 
 
-    public bool CanAcceptItemType(ItemData itemData)
+    public bool CanAcceptItemType(ItemData itemData) //check if type is correct
     {
         return itemData.ItemType == acceptedItems; //Item passing in must match this can's type, used in inventoryUI script
     }

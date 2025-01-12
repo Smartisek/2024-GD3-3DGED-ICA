@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private NPCConversation conversation;
     [SerializeField] private GameObject pressIndicator;
     private bool conversationInRange = false;
     public bool inDialogue = false;
+    #endregion
 
+    #region COLLIDERS
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -28,7 +31,9 @@ public class NPC : MonoBehaviour
             inDialogue = false;
         }
     }
+    #endregion
 
+    #region DIALOGUE
     public void StartDialogue()
     {
         if (conversationInRange && !inDialogue)
@@ -43,5 +48,5 @@ public class NPC : MonoBehaviour
     {
         inDialogue = false;
     }
-
+    #endregion
 }

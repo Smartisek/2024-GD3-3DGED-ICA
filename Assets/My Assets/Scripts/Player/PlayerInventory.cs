@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
+    //worked with same logic as I did in the G-CA
+
     #region Variables
     [SerializeField] private InventoryCollection inventoryCollection; //what invetory collection ?  scriptable object 
     [SerializeField] private Inventory inventory; //for resetting inventory at start of the game
