@@ -97,26 +97,24 @@ public class UI : MonoBehaviour
     #endregion
 
     #region CONDITIONS
-    public void WinCondition()
-    {
-        Debug.Log("You win! FROM UI");
-    }
-
     public void OneStarCondition()
     {
         star1.enabled = true;
+        SoundManager.PlaySound("STAR");
         StartCoroutine(ShowPoliceMessage("Good job! Keep going young man.", Color.white));
     }
 
     public void TwoStarsCondition()
     {
         star2.enabled = true;
+        SoundManager.PlaySound("STAR");
         StartCoroutine(ShowPoliceMessage("You are slowly getting there!", Color.white));
     }
 
     public void ThreeStarsCondition()
     {
         star3.enabled = true;
+        SoundManager.PlaySound("STAR");
         StartCoroutine(ShowPoliceMessage("Great work! You are now free to go.", Color.white));
     }
 
@@ -129,6 +127,7 @@ public class UI : MonoBehaviour
     {
         if (winPage != null)
         {
+            SoundManager.PlaySound("STAR");
             winPage.SetActive(true);
         }
         Time.timeScale = 0f; // Pause the game
