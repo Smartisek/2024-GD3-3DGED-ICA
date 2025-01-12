@@ -125,8 +125,8 @@ public class InventoryUI : MonoBehaviour
         {
             if (currentTrashCan != null && currentTrashCan.CanAcceptItemType(itemSlotUI.ItemData)) //check if the (this) trash can can accept that type of item
             {
-                playerInventory.Remove(itemSlotUI.ItemData, itemSlotUI.ItemCount); //take away from player inventory 
-                currentBinInventory.Add(itemSlotUI.ItemData, itemSlotUI.ItemCount); //give to trash inventory 
+                playerInventory.Remove(itemSlotUI.ItemData, 1); //take away from player inventory 
+                currentBinInventory.Add(itemSlotUI.ItemData, 1); //give to trash inventory 
                 TrashCounter.IncrementRecycledItems(); //increment the trash counter
                 UpdateInventoryUI();
                 currentBinInventory.RaiseOnChange(); //notify subscribers of the change

@@ -1,0 +1,43 @@
+Assets:
+- https://assetstore.unity.com/student-plan-pack1?utm_source=google&utm_medium=cpc&utm_campaign=as_as_as_amer_amer-t1_en_pu_dsp-pmax_acq_pr_2024-04_x_cc3022_ev_id:71700000118169934&utm_content=_id:_SpringSalePMAX2023_&utm_term=&gad_source=1&gclid=CjwKCAiA7Y28BhAnEiwAAdOJUCE7xS_5nVjdQSu8SHWc3aV00OKOskM-nm3LFXS2_xuyeRhXmNyuAxoCAsEQAvD_BwE&gclsrc=aw.ds
+- https://assetstore.unity.com/packages/vfx/shaders/urp-stylized-water-shader-proto-series-187485?clickref=1101lAbVqFbu&utm_source=partnerize&utm_medium=affiliate&utm_campaign=unity_affiliate
+- https://assetstore.unity.com/packages/3d/environments/fantasy/poly-style-medieval-village-159363?clickref=1101lAbVqEZP&utm_source=partnerize&utm_medium=affiliate&utm_campaign=unity_affiliate
+- https://assetstore.unity.com/packages/tools/utilities/dialogue-editor-168329?aid=1101l9Bhe
+
+
+
+
+
+Plugins:
+- https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041?srsltid=AfmBOoouIP1cJ3S6zWQkHLO7tZ-JZt0VaNPRsFtX6wCa9pcZNiu6bR0A
+
+
+
+Sprites:
+- https://www.vhv.rs/viewpic/iRhwhmw_transparent-garbage-bag-png-garbage-bag-pixel-art/
+- https://www.pngegg.com/en/png-hcsnd/download
+- https://www.pngegg.com/en/png-yssso/download
+- https://www.cleanpng.com/png-beer-glassware-wine-clip-art-a-bottle-of-ice-beer-467538/download-png.html#google_vignette
+- https://www.vhv.rs/viewpic/hxJhixT_transparent-diet-coke-bottle-png-coca-cola-pixel/#google_vignette
+- https://www.pngwing.com/en/free-png-zdwdf/download
+- https://www.pngegg.com/en/png-emuaa/download
+- https://www.pngegg.com/en/png-evjdf/download
+- https://www.pngegg.com/en/png-nonux/download
+- https://www.pngegg.com/en/png-yihea/download
+- https://toppng.com/show_download/24984/tennis-ball#google_vignette
+- https://www.pngwing.com/en/free-png-bzbjk/download
+- https://www.clipartmax.com/download/m2H7Z5H7N4d3H7K9_rock-sprite-png-2d-rock-sprite/
+- https://assetstore.unity.com/packages/2d/gui/icons/2d-casual-ui-hd-82080
+
+Animations:
+- Mixamo.com
+
+Sounds:
+- https://freesound.org/people/SilverIllusionist/sounds/411178/
+- https://freesound.org/people/Fission9/sounds/521588/
+- https://freesound.org/people/JavierZumer/sounds/257227/
+- https://freesound.org/people/Raclure/sounds/483598/
+- https://freesound.org/people/Seth_Makes_Sounds/sounds/678019/
+
+Font:
+- https://assetstore.unity.com/packages/2d/fonts/free-pixel-font-thaleah-140059
