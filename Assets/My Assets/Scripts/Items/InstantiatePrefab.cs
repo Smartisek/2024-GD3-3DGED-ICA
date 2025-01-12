@@ -4,6 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "InstantiatePrefab", menuName = "SO/Instantiate/Item")]
 
+/*BASED ON NIAL'S CODE THAT I ALSO USED IN G-CA*/
+
 public class InstantiatePrefab : ScriptableObject, IInstantiatePrefab
 {
     [Tooltip("Name of item to be instantiated.")]

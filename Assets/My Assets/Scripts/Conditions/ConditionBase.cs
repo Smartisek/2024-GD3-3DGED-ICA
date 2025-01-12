@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace GD.State
 {
+    /*  NIAL'S CODE FROM CLASSES  */
+
     /// <summary>
     /// Abstract base class for conditions.
     /// </summary>

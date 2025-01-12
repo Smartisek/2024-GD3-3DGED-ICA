@@ -44,9 +44,9 @@ public class Planter : MonoBehaviour
 
     public void PlantTree(ItemData itemData)
     {
-        if(itemData.ItemType == ItemType.Seed)
+        if(itemData.ItemType == ItemType.Seed) //if item draggin in is type seed do the following
         {
-            Instantiate(treePrefab, treeSpawnPoint.position, treeSpawnPoint.rotation);
+            Instantiate(treePrefab, treeSpawnPoint.position, treeSpawnPoint.rotation); //instantiate the tree prefab at the spawn point
             Debug.Log("Tree planted");
             treePlanted = true;
             pressIndicator.SetActive(false);

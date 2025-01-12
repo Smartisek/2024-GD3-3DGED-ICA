@@ -42,7 +42,7 @@ public class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    private void UpdateInventoryUI()
+    private void UpdateInventoryUI() //to have up to date inventory 
     {
         //clear existing slots to avoid duplicates
         foreach (Transform child in PlayerItemSlotContainer)
@@ -77,7 +77,7 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    public void ToggleInventoryPanel()
+    public void ToggleInventoryPanel() //show the inventory panel
     {
         Debug.Log("Toggling inventory panel");
         IsInventoryOpen = !IsInventoryOpen; //toggle the inventory state
